@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary's Fried Chicken | Oficial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --rojo: #bd161c;
+            --amarillo: #f3b412;
+            --naranja: #f37021;
+            --blanco: #ffffff;
+            --negro: #1a1a1a;
+            --crema: #fcfcfc;
+        }
+
+        /* Configuración Base */
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            background-color: var(--crema); 
+            color: var(--negro);
+            overflow-x: hidden;
+        }
+
+        /* --- HERO: IMAGEN PRINCIPAL --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('img/fondo.PNG');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-png { 
+            position: absolute; 
+            top: 20px; 
+            left: 5%; 
+            width: 100px; 
+            z-index: 10; 
+        }
+
+        /* Navegación */
+        .nav-links { 
+            position: absolute; 
+            top: 40px; 
+            right: 5%; 
+            display: flex; 
+            gap: 15px; 
+            z-index: 10; 
+            flex-wrap: wrap; 
+            justify-content: flex-end; 
+        }
+        .nav-links a { 
+            color: var(--blanco); 
+            text-decoration: none; 
+            font-family: 'Oswald'; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 0.5px; 
+            transition: 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--amarillo); }
+
+        /* Barra de Búsqueda */
+        .search-bar {
+            width: 85%; 
+            max-width: 600px;
+            background: rgba(255,255,255,0.95); 
+            border: 3px solid var(--rojo);
+            border-radius: 50px; 
+            padding: 10px 25px;
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .search-bar:focus-within { transform: scale(1.02); }
+        .search-bar input { 
+            border: none; 
+            width: 100%; 
+            outline: none; 
+            background: transparent; 
+            font-size: 1rem; 
+            padding-left: 10px; 
+        }
+
+        /* --- REDES SOCIALES --- */
+        .social-row { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 40px 0; 
+        }
+        .circle-btn { 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-decoration: none; 
+            font-size: 1.4rem; 
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .circle-btn:hover { transform: translateY(-5px); }
+
+        /* --- MOSAICO ASIMÉTRICO --- */
+        .mosaic-grid {
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 200px;
+            gap: 15px;
+        }
+
+        .box { 
+            background-color: #eee; 
+            border-radius: 12px; 
+            background-size: cover; 
+            background-position: center; 
+            transition: 0.3s ease;
+        }
+        .box:hover { filter: brightness(1.1); }
+        
+        .box-tall { grid-row: span 2; } 
+        .box-large { grid-column: span 2; grid-row: span 2; } 
+
+        /* --- ZONA CLIENTE KRUNCH --- */
+        .krunch-invite {
+            background: linear-gradient(90deg, var(--rojo), var(--naranja));
+            color: white; 
+            margin: 20px 5%; 
+            padding: 30px;
+            border-radius: 20px; 
+            display: flex; 
+            align-items: center; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(189, 22, 28, 0.2);
+        }
+        .triangle-decor {
+            width: 0; height: 0; 
+            border-left: 20px solid transparent; 
+            border-right: 20px solid transparent; 
+            border-bottom: 35px solid var(--amarillo); 
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Oculto en móvil para limpieza */
+            .hero { height: 60vh; }
+            .mosaic-grid { 
+                grid-template-columns: 1fr; 
+                grid-auto-rows: 250px; 
+            }
+            .box-tall, .box-large { grid-column: auto; grid-row: auto; }
+            .krunch-invite { flex-direction: column; text-align: center; }
+            .triangle-decor { margin: 0 0 15px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <img src="img/logo1.PNG" class="logo-png" alt="Logo Marys">
+        
+        <nav class="nav-links">
+            <a href="#frecuentes">Clientes frecuentes</a>
+            <a href="#promos">Promociones</a>
+            <a href="#ubicaciones">Ubicaciones</a>
+            <a href="#menu">Menú</a>
+            <a href="#historia">Nuestra historia</a>
+            <a href="#eventos">Calendario</a>
+            <a href="#reseñas">Reseña</a>
+        </nav>
+
+        <div class="search-bar">
+            <i class="fas fa-search" style="color:var(--rojo)"></i>
+            <input type="text" placeholder="Busca tu producto Mary's...">
+        </div>
+    </header>
+
+    <div class="social-row">
+        <a href="#" class="circle-btn" style="background:#1877f2" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="circle-btn" style="background:#E4405F" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="circle-btn" style="background:#000" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="circle-btn" style="background:#25d366" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <main class="mosaic-grid">
+        <div class="box" style="background-image: url('img/mosaico1.PNG');"></div>
+        <div class="box" style="background-image: url('img/mosaico2.PNG');"></div>
+        <div class="box" style="background-image: url('img/mosaico3.PNG');"></div>
+
+        <div class="box-large box" style="background-image: url('img/mosaico4.PNG');"></div>
+        <div class="box" style="background-image: url('img/mosaico5.PNG');"></div>
+        <div class="box" style="background-image: url('img/mosaico6.PNG');"></div>
+        
+        <div class="box-tall box" style="background-image: url('img/mosaico7.PNG');"></div>
+    </main>
+
+    <section class="krunch-invite">
+        <div class="triangle-decor"></div>
+        <div class="krunch-text">
+            <h2 style="margin:0; font-family:'Oswald'; letter-spacing: 1px;">¿QUIERES SER UN CLIENTE KRUNCH?</h2>
+            <p style="margin:5px 0 0 0; opacity: 0.9;">Suscríbete y obtén beneficios en cada compra.</p>
+        </div>
+    </section>
+
+    </body>
+</html>
+    <section id="frecuentes" class="tab-content" style="padding: 40px 5%; background: #fffcf5;">
+        
+        <div class="loyalty-card">
+            <div class="card-header">
+                <h2 style="margin:0; font-family:'Oswald'; letter-spacing: 1px; text-transform: uppercase;">Tarjeta de Lealtad</h2>
+                <p style="margin:5px 0 15px 0; font-size: 0.9rem;">¡Colecciona 5 piezas y la 6ta es <b>GRATIS</b>!</p>
+            </div>
+            
+            <div class="stamps-grid">
+                <div class="stamp-circle active-stamp"><i class="fas fa-check"></i></div>
+                <div class="stamp-circle active-stamp"><i class="fas fa-check"></i></div>
+                <div class="stamp-circle active-stamp"><i class="fas fa-drumstick-bite"></i></div>
+                <div class="stamp-circle empty-stamp"></div>
+                <div class="stamp-circle empty-stamp"></div>
+                <div class="stamp-circle reward-stamp"><i class="fas fa-gift"></i></div>
+            </div>
+        </div>
+
+        <div class="ranking-container">
+            <h3 class="title-ranking">TU NIVEL KRUNCH</h3>
+            <div class="medals-row">
+                <div class="medal-item opacity-high">
+                    <i class="fas fa-medal" style="color: #cd7f32;"></i>
+                    <span>BRONCE</span>
+                </div>
+                <div class="medal-item current-level">
+                    <i class="fas fa-medal" style="color: #c0c0c0;"></i>
+                    <span>PLATA</span>
+                </div>
+                <div class="medal-item opacity-low">
+                    <i class="fas fa-medal" style="color: #ffd700;"></i>
+                    <span>ORO</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="birthday-zone">
+            <h2 class="title-festejo">¡CELEBRAMOS CONTIGO! <i class="fas fa-birthday-cake"></i></h2>
+            <div class="birthday-grid">
+                <div class="bday-box">
+                    <div class="bday-tag">¡HBD!</div>
+                    <div class="bday-content">
+                        <p>En tu día especial, Mary's te regala un <b>Complemento Gratis</b></p>
+                        <button class="btn-celebrar">OBTENER REGALO</button>
+                    </div>
+                </div>
+                <div class="bday-box">
+                    <div class="bday-tag" style="background: var(--naranja);">PROMO</div>
+                    <div class="bday-content">
+                        <p>¿Es tu cumple? Pide tu <b>Paquete Festejo</b> con 20% de descuento</p>
+                        <button class="btn-celebrar">VER PROMO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="promos" class="tab-content" style="padding: 0 0 40px 0; background-color: var(--crema);">
+        
+        <div class="promo-hero">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; font-size: 2.5rem; text-transform: uppercase;">Promos Krunch</h2>
+                <p style="margin:5px 0 0 0; opacity: 0.9;">Las mejores ofertas de Mary's en un solo lugar</p>
+            </div>
+        </div>
+
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper">
+                    <img src="img/promo1.PNG" alt="Promo WoW"> 
+                    <div class="promo-tag">TOP</div>
+                </div>
+                <div class="promo-info">
+                    <h3>Promo ¡WoW!</h3>
+                    <p class="promo-desc">10 piezas de pollo (pierna y muslo), puré y ensalada grande.</p>
+                    <div class="promo-footer">
+                        <span class="price">$240</span>
+                        <button class="btn-promo">PEDIR YA</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper">
+                    <img src="img/promo2.PNG" alt="Promo Crispy">
+                </div>
+                <div class="promo-info">
+                    <h3>Promo Crispy</h3>
+                    <p class="promo-desc">1 hamburguesa, papas (150g) y un refresco de 155ml.</p>
+                    <div class="promo-footer">
+                        <span class="price">$99</span>
+                        <button class="btn-promo">PEDIR YA</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper">
+                    <img src="img/promo3.PNG" alt="Promo Alas">
+                </div>
+                <div class="promo-info">
+                    <h3>Promo Alas</h3>
+                    <p class="promo-desc">10 alitas con dos salsas a elección: Mango, BBQ o Tradicional.</p>
+                    <div class="promo-footer">
+                        <span class="price">$120</span>
+                        <button class="btn-promo">PEDIR YA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS PARTE 2 --- */
+        
+        /* Lealtad */
+        .loyalty-card {
+            background: linear-gradient(135deg, var(--rojo) 0%, #8b1014 100%);
+            color: white; padding: 30px; border-radius: 25px; text-align: center;
+            box-shadow: 0 15px 35px rgba(189, 22, 28, 0.3); margin-bottom: 30px;
+        }
+        .stamps-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .stamp-circle { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px dashed rgba(255,255,255,0.5); }
+        .active-stamp { background: white; color: var(--rojo); border-style: solid; font-size: 1.2rem; }
+        .reward-stamp { background: var(--amarillo); color: var(--rojo); animation: pulse 2s infinite; border: 2px solid white; font-size: 1.2rem; }
+
+        /* Ranking */
+        .ranking-container { text-align: center; margin-bottom: 40px; background: white; padding: 25px; border-radius: 20px; border: 2px solid var(--amarillo); }
+        .title-ranking { font-family: 'Oswald'; color: var(--negro); margin-bottom: 20px; letter-spacing: 1px; }
+        .medals-row { display: flex; justify-content: space-around; align-items: center; }
+        .medal-item { display: flex; flex-direction: column; font-size: 0.75rem; font-weight: 900; }
+        .medal-item i { font-size: 2.5rem; margin-bottom: 8px; }
+        .current-level { transform: scale(1.2); color: var(--rojo); }
+        .opacity-high { opacity: 0.6; }
+        .opacity-low { opacity: 0.2; }
+
+        /* Cumpleaños */
+        .title-festejo { font-family: 'Oswald'; color: var(--rojo); text-align: center; margin-bottom: 25px; letter-spacing: 1px; }
+        .birthday-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .bday-box { background: white; border: 3px solid var(--amarillo); border-radius: 20px; position: relative; padding: 40px 20px 20px 20px; text-align: center; transition: 0.3s; }
+        .bday-box:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .bday-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--rojo); color: white; padding: 5px 25px; border-radius: 50px; font-family: 'Oswald'; font-weight: bold; }
+        .btn-celebrar { background: var(--naranja); color: white; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; transition: 0.3s; margin-top: 10px; }
+        .btn-celebrar:hover { background: var(--rojo); }
+
+        /* Promociones Hero */
+        .promo-hero {
+            width: 100%; height: 300px;
+            background-image: url('img/promobuck.PNG');
+            background-size: cover; background-position: center;
+            display: flex; align-items: flex-end; margin-bottom: 40px;
+        }
+        .promo-overlay { background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; width: 100%; padding: 40px 5%; }
+
+        /* Grid y Cards de Promos */
+        .promos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 0 5%; }
+        .promo-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+        .promo-card:hover { transform: translateY(-10px); }
+        .promo-img-wrapper { position: relative; height: 200px; background-color: #f8f8f8; }
+        .promo-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .promo-tag { position: absolute; top: 15px; right: 15px; background: var(--rojo); color: white; padding: 5px 15px; border-radius: 50px; font-weight: bold; font-size: 0.75rem; }
+        .promo-info { padding: 20px; }
+        .promo-info h3 { margin: 0; font-family: 'Oswald'; color: var(--rojo); font-size: 1.5rem; }
+        .promo-desc { color: #666; font-size: 0.9rem; margin: 10px 0 20px 0; line-height: 1.5; min-height: 45px; }
+        .promo-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+        .price { font-size: 1.6rem; font-weight: 900; color: var(--negro); }
+        .btn-promo { background: var(--amarillo); border: none; padding: 10px 22px; border-radius: 50px; font-weight: bold; color: var(--rojo); cursor: pointer; transition: 0.3s; }
+        .btn-promo:hover { background: var(--naranja); color: white; }
+
+        /* Animación */
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.08);} 100% {transform: scale(1);} }
+
+        @media (max-width: 768px) {
+            .birthday-grid { grid-template-columns: 1fr; }
+            .promo-hero { height: 220px; }
+            .promos-grid { padding: 0 15px; }
+        }
+    </style>
+    <section id="ubicaciones" class="tab-content" style="padding: 60px 5%; background-color: #fcfcfc;">
+        
+        <h2 style="font-family:'Oswald'; text-align:center; color:var(--rojo); margin-bottom: 40px; font-size: 2rem; letter-spacing: 1px;">NUESTRAS SUCURSALES</h2>
+
+        <div class="sucursales-list-full">
+            
+            <div class="card-wide-minimal">
+                <img src="img/buesu.PNG" alt="Sucursal Buenavista" class="main-img">
+                <div class="card-overlay-simple">
+                    <h3 class="branch-name">BUENAVISTA</h3>
+                    <div class="action-icons">
+                        <a href="https://wa.me/5577479755" class="ico-btn wa" title="WhatsApp Buenavista"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/8CWKNSKHSnXTg3Z3A?g_st=ic" class="ico-btn maps" title="Ver en Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wide-minimal">
+                <img src="img/tessu.PNG" alt="Sucursal El Tesoro" class="main-img">
+                <div class="card-overlay-simple">
+                    <h3 class="branch-name">EL TESORO</h3>
+                    <div class="action-icons">
+                        <a href="https://wa.me/5572993603" class="ico-btn wa" title="WhatsApp El Tesoro"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/XhC9YKq8dHQBgWtK9?g_st=ic" class="ico-btn maps" title="Ver en Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wide-minimal">
+                <img src="img/lopsu.PNG" alt="Sucursal López" class="main-img">
+                <div class="card-overlay-simple">
+                    <h3 class="branch-name">LÓPEZ</h3>
+                    <div class="action-icons">
+                        <a href="https://wa.me/525575412265" class="ico-btn wa" title="WhatsApp López"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/oVCQ94M6wBSxyJMa7?g_st=ic" class="ico-btn maps" title="Ver en Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wide-minimal">
+                <img src="img/izcsu.PNG" alt="Sucursal Izcalli" class="main-img">
+                <div class="card-overlay-simple">
+                    <h3 class="branch-name">IZCALLI</h3>
+                    <div class="action-icons">
+                        <a href="https://wa.me/5538382437" class="ico-btn wa" title="WhatsApp Izcalli"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/3RKqBvxDDZCGXZHh8?g_st=ic" class="ico-btn maps" title="Ver en Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-wide-minimal">
+                <img src="img/tequsuc.PNG" alt="Sucursal Tequex" class="main-img">
+                <div class="card-overlay-simple">
+                    <h3 class="branch-name">TEQUEX</h3>
+                    <div class="action-icons">
+                        <a href="https://wa.me/525616905039" class="ico-btn wa" title="WhatsApp Tequex"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://maps.app.goo.gl/YCKPM2mYnBU7qDjw9?g_st=ic" class="ico-btn maps" title="Ver en Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS UBICACIONES --- */
+        .sucursales-list-full {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card-wide-minimal {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card-wide-minimal:hover {
+            transform: scale(1.01);
+        }
+
+        .main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-overlay-simple {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Degradado más oscuro a la izquierda para resaltar el texto */
+            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .branch-name {
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .action-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .ico-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .wa { background-color: #25d366; }
+        .maps { background-color: var(--rojo); }
+
+        .ico-btn:hover { 
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Responsive Móvil */
+        @media (max-width: 600px) {
+            .card-wide-minimal { height: 140px; }
+            .card-overlay-simple { padding: 0 20px; }
+            .branch-name { font-size: 1.4rem; letter-spacing: 1px; }
+            .ico-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+            .sucursales-list-full { gap: 15px; }
+        }
+    </style>
+    <section id="menu" class="tab-content" style="padding: 60px 0; background-color: #fcfcfc;">
+        
+        <h2 style="font-family:'Oswald'; text-align:center; color:var(--rojo); margin-bottom: 40px; font-size: 2.5rem; letter-spacing: 1px; text-transform: uppercase;">Nuestro Menú</h2>
+
+    <div class="menu-category">
+        <div class="category-banner" style="background-image: url('img/complemen.PNG');">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; letter-spacing: 1px;">PAQUETES CON COMPLEMENTOS</h2>
+            </div>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete1.PNG" alt="Paquete 1"></div>
+                <div class="promo-info">
+                    <h3>Paquete 1</h3>
+                    <p class="promo-desc">2 piezas a elegir (Pierna/Muslo o Pechuga/Ala) + Puré o Ensalada Ch.</p>
+                    <div class="promo-footer"><span class="price">$78</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete2.PNG" alt="Paquete 2"></div>
+                <div class="promo-info">
+                    <h3>Paquete 2</h3>
+                    <p class="promo-desc">4 piezas surtidas (Pierna, Muslo, Pechuga, Ala) + Puré y Ensalada Ch.</p>
+                    <div class="promo-footer"><span class="price">$135</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete3.PNG" alt="Paquete 3"></div>
+                <div class="promo-info">
+                    <h3>Paquete 3</h3>
+                    <p class="promo-desc">6 piezas surtidas + Puré y Ensalada Ch.</p>
+                    <div class="promo-footer"><span class="price">$200</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete4.PNG" alt="Paquete 4"></div>
+                <div class="promo-info">
+                    <h3>Paquete 4</h3>
+                    <p class="promo-desc">8 piezas surtidas + Puré y Ensalada Gr.</p>
+                    <div class="promo-footer"><span class="price">$270</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete5.PNG" alt="Paquete 5"></div>
+                <div class="promo-info">
+                    <h3>Paquete 5</h3>
+                    <p class="promo-desc">12 piezas surtidas + Puré y Ensalada Gr.</p>
+                    <div class="promo-footer"><span class="price">$340</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete6.PNG" alt="Paquete 6"></div>
+                <div class="promo-info">
+                    <h3>Paquete 6</h3>
+                    <p class="promo-desc">16 piezas surtidas + Purés y Ensaladas Gr.</p>
+                    <div class="promo-footer"><span class="price">$520</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete7.PNG" alt="Paquete 7"></div>
+                <div class="promo-info">
+                    <h3>Paquete 7</h3>
+                    <p class="promo-desc">20 piezas surtidas + 2 Purés y 2 Ensaladas Gr.</p>
+                    <div class="promo-footer"><span class="price">$565</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         <div class="menu-category" style="margin-top: 60px;">
+        <div class="category-banner" style="background-image: url('img/comsin.PNG');">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; letter-spacing: 1px;">PAQUETES SIN COMPLEMENTOS (SOLOS)</h2>
+            </div>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete1s.PNG" alt="Paquete 1 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 1 Solo</h3>
+                    <p class="promo-desc">2 piezas a elegir (Pierna/Muslo o Pechuga/Ala). Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$63</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete2s.PNG" alt="Paquete 2 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 2 Solo</h3>
+                    <p class="promo-desc">4 piezas surtidas (Pierna, Muslo, Pechuga, Ala). Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$115</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete3s.PNG" alt="Paquete 3 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 3 Solo</h3>
+                    <p class="promo-desc">6 piezas surtidas. El balance perfecto para compartir. Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$160</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete4s.PNG" alt="Paquete 4 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 4 Solo</h3>
+                    <p class="promo-desc">8 piezas surtidas. Para los amantes del crujiente. Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$215</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete5s.PNG" alt="Paquete 5 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 5 Solo</h3>
+                    <p class="promo-desc">12 piezas surtidas. Ideal para reuniones pequeñas. Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">290</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete6s.PNG" alt="Paquete 6 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 6 Solo</h3>
+                    <p class="promo-desc">16 piezas surtidas. ¡Hambre de verdad! Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$430</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/paquete7s.PNG" alt="Paquete 7 Solos"></div>
+                <div class="promo-info">
+                    <h3>Paquete 7 Solo</h3>
+                    <p class="promo-desc">20 piezas surtidas. El festín más grande de Mary's. Solo pollo.</p>
+                    <div class="promo-footer"><span class="price">$475</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="menu-category" style="margin-top: 60px;">
+        <div class="category-banner" style="background-image: url('img/complementos.PNG');">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; letter-spacing: 1px;">PARA COMPARTIR / EXTRAS</h2>
+            </div>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/tenders.PNG" alt="Tenders"></div>
+                <div class="promo-info">
+                    <h3>Tenders</h3>
+                    <p class="promo-desc">300g de pechuga crujiente. Incluye salsa (Mango, BBQ o Tradicional).</p>
+                    <div class="promo-footer"><span class="price">$80</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/palomitas.PNG" alt="Palomitas"></div>
+                <div class="promo-info">
+                    <h3>Palomitas</h3>
+                    <p class="promo-desc">250g de trocitos de pollo premium. Incluye salsa a elegir.</p>
+                    <div class="promo-footer"><span class="price">$60</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/nuggets.PNG" alt="Nuggets"></div>
+                <div class="promo-info">
+                    <h3>Nuggets</h3>
+                    <p class="promo-desc">250g de nuggets clásicos. Incluye salsa a elegir.</p>
+                    <div class="promo-footer"><span class="price">$50</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/crispy.PNG" alt="Crispy"></div>
+                <div class="promo-info">
+                    <h3>Crispy</h3>
+                    <p class="promo-desc">300g de tiras extra crujientes. Incluye salsa a elegir.</p>
+                    <div class="promo-footer"><span class="price">$80</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/papas.PNG" alt="Papas Fritas"></div>
+                <div class="promo-info">
+                    <h3>Papas Fritas</h3>
+                    <p class="promo-desc">300g de papas clásicas. Incluye 2 Ketchup y 2 Valentina.</p>
+                    <div class="promo-footer"><span class="price">$45</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/bisquets.PNG" alt="Bisquets"></div>
+                <div class="promo-info">
+                    <h3>Bisquets</h3>
+                    <p class="promo-desc">Pieza individual horneada. A partir de 4 pz incluye mermelada.</p>
+                    <div class="promo-footer"><span class="price">$5</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="menu-category" style="margin-top: 60px;">
+        <div class="category-banner" style="background-image: url('img/mosaico4.PNG');">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; letter-spacing: 1px;">PIEZAS INDIVIDUALES</h2>
+            </div>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/ala.PNG" alt="Ala de Pollo"></div>
+                <div class="promo-info">
+                    <h3>Ala</h3>
+                    <p class="promo-desc">Pieza individual crujiente, ideal para un antojo rápido.</p>
+                    <div class="promo-footer"><span class="price">$19</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/pierna.PNG" alt="Pierna de Pollo"></div>
+                <div class="promo-info">
+                    <h3>Pierna</h3>
+                    <p class="promo-desc">Pieza individual jugosa y con el toque clásico Krunch.</p>
+                    <div class="promo-footer"><span class="price">$27</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/muslo.PNG" alt="Muslo de Pollo"></div>
+                <div class="promo-info">
+                    <h3>Muslo</h3>
+                    <p class="promo-desc">Pieza individual con gran sabor y textura tierna.</p>
+                    <div class="promo-footer"><span class="price">$27</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/pechuga.PNG" alt="Pechuga de Pollo"></div>
+                <div class="promo-info">
+                    <h3>Pechuga</h3>
+                    <p class="promo-desc">La pieza más grande, carnosa y crujiente de nuestro menú.</p>
+                    <div class="promo-footer"><span class="price">$31</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-category" style="margin-top: 60px;">
+        <div class="category-banner" style="background-image: url('img/salsas.PNG');">
+            <div class="promo-overlay">
+                <h2 style="font-family:'Oswald'; margin:0; letter-spacing: 1px;">SALSAS EXTRAS</h2>
+            </div>
+        </div>
+        <div class="promos-grid">
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/sm.PNG" alt="Salsa Mango Habanero"></div>
+                <div class="promo-info">
+                    <h3>Mango Habanero</h3>
+                    <p class="promo-desc">60g. El toque agridulce y picante que no puede faltar.</p>
+                    <div class="promo-footer"><span class="price">$15</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-img-wrapper"><img src="img/sb.PNG" alt="Salsa BBQ"></div>
+                <div class="promo-info">
+                    <h3>BBQ</h3>
+                    <p class="promo-desc">60g. Ahumada, dulce y perfecta para remojar tus piezas.</p>
+                    <div class="promo-footer"><span class="price">$15</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-info">
+                    <div class="promo-img-wrapper"><img src="img/st.PNG" alt="Salsa Tradicional"></div>
+                    <h3>Tradicional</h3>
+                    <p class="promo-desc">60g. Nuestra receta clásica con el sazón original de Mary's.</p>
+                    <div class="promo-footer"><span class="price">$15</span><button class="btn-promo">AÑADIR</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS MENÚ --- */
+        .category-banner {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .menu-category .promo-overlay {
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            width: 100%;
+            padding: 25px 5%;
+            color: white;
+        }
+
+        /* Reutilizamos promos-grid y promo-card de la parte anterior para consistencia */
+        .menu-category .promo-desc {
+            min-height: 40px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .category-banner { height: 150px; }
+            .menu-category .promo-overlay h2 { font-size: 1.2rem; }
+        }
+    </style>
+    <section id="historia" class="tab-content" style="padding: 60px 5%; background-color: #ffffff;">
+        
+        <h2 style="font-family:'Oswald'; text-align:center; color:var(--rojo); margin-bottom: 40px; font-size: 2.5rem; letter-spacing: 1px; text-transform: uppercase;">Nuestra Historia</h2>
+
+        <div class="historia-container">
+            
+            <div class="historia-main-col">
+                <div class="photo-frame-large">
+                    <img src="img/identidad.PNG" alt="Mary's Fried Chicken Inicio">
+                </div>
+                
+                <div class="photo-frame-medium">
+                    <img src="img/identidad2.PNG" alt="Nuestra Tradición">
+                </div>
+
+                <div class="history-text-outline">
+                    <p>Mary's Fried Chicken nació con un propósito claro: ofrecer el pollo frito más crujiente y delicioso, preparado con una receta única que combina especias seleccionadas y frescura inigualable.</p>
+                </div>
+                <div class="history-text-outline">
+                    <p>Desde nuestra primera sucursal, nos enfocamos en crear no solo comida, sino una experiencia "Krunch" que hiciera que cada cliente se sintiera parte de nuestra familia.</p>
+                </div>
+                <div class="history-text-outline">
+                    <p>Hoy seguimos creciendo, manteniendo el compromiso de calidad que nos vio nacer: pollo fresco, atención cálida y ese sabor que ya conoces.</p>
+                </div>
+            </div>
+
+            <div class="historia-side-col">
+                <div class="history-side-card">
+                    <h4 style="color:var(--rojo); font-family:'Oswald'; margin:0 0 8px 0; letter-spacing: 1px;">EL ORIGEN</h4>
+                    <p style="font-size:0.95rem; margin:0; line-height: 1.4;">Todo comenzó con un sueño y una freidora, buscando el equilibrio perfecto entre lo crujiente y lo jugoso.</p>
+                </div>
+                
+                <div class="history-side-card">
+                    <h4 style="color:var(--rojo); font-family:'Oswald'; margin:0 0 8px 0; letter-spacing: 1px;">CRECIMIENTO</h4>
+                    <p style="font-size:0.95rem; margin:0; line-height: 1.4;">Gracias a tu preferencia, hoy estamos presentes en más sucursales cerca de ti.</p>
+                </div>
+                
+                <div class="history-side-card">
+                    <h4 style="color:var(--rojo); font-family:'Oswald'; margin:0 0 8px 0; letter-spacing: 1px;">EL SABOR</h4>
+                    <p style="font-size:0.95rem; margin:0; line-height: 1.4;">Nuestra receta es secreta, pero nuestra pasión es compartida con cada cliente.</p>
+                </div>
+
+                <div class="side-photo-row">
+                    <div class="photo-frame-small"><img src="img/identidad3.PNG" alt="Detalle 1"></div>
+                    <div class="photo-frame-small"><img src="img/identidad4.PNG" alt="Detalle 2"></div>
+                </div>
+
+                <div class="history-logo-display">
+                    <img src="img/logo2.PNG" alt="Mary's Logo Oficial">
+                </div>
+            </div>
+
+            <div class="history-footer-frame">
+                <img src="img/identidad5.PNG" alt="Comunidad Mary's">
+                <div class="footer-overlay-text">
+                    <h3 style="font-family:'Oswald'; margin:0;">PASIÓN POR EL POLLO FRITO</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS HISTORIA --- */
+        .historia-container {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Marcos de Fotos */
+        .photo-frame-large { width: 100%; height: 400px; border-radius: 15px; overflow: hidden; background: #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .photo-frame-medium { width: 100%; height: 280px; border-radius: 15px; overflow: hidden; background: #eee; margin: 25px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .photo-frame-small { width: 48%; height: 140px; border-radius: 12px; overflow: hidden; background: #eee; }
+        
+        .photo-frame-large img, .photo-frame-medium img, .photo-frame-small img, .history-footer-frame img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
+        }
+        
+        .photo-frame-large:hover img, .photo-frame-medium:hover img { transform: scale(1.05); }
+
+        /* Textos con Contorno */
+        .history-text-outline {
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Tarjetas Laterales Rojas */
+        .history-side-card {
+            border: 2px solid var(--rojo);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background: #fffcfc;
+        }
+
+        .side-photo-row { display: flex; justify-content: space-between; margin-bottom: 25px; }
+
+        /* Contenedor del Logo */
+        .history-logo-display {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            background: #fafafa;
+        }
+        .history-logo-display img { max-width: 75%; max-height: 75%; object-fit: contain; }
+
+        /* Pie de Historia (Imagen Ancha) */
+        .history-footer-frame {
+            grid-column: span 2;
+            width: 100%;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+        .footer-overlay-text {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Móvil */
+        @media (max-width: 768px) {
+            .historia-container { grid-template-columns: 1fr; }
+            .history-footer-frame { grid-column: span 1; height: 180px; }
+            .photo-frame-large { height: 250px; }
+            .photo-frame-medium { height: 200px; }
+        }
+    </style>
+    <section id="eventos" class="tab-content" style="padding: 60px 5%; background-color: #fff;">
+        
+        <div class="calendar-header" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-family:'Oswald'; color: var(--rojo); text-transform: uppercase; font-size: 2.2rem; letter-spacing: 1px;">Próximos Eventos y Festejos</h2>
+            <p style="color: #666; font-size: 1.1rem;">¡Ven a celebrar con nosotros en todas nuestras sucursales!</p>
+        </div>
+
+        <div class="calendar-container-flex" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: start;">
+            
+            <div class="calendar-wrapper">
+                <div class="month-title">
+                    <h3 id="current-month" style="font-family:'Oswald'; color: var(--naranja); text-align: center; margin-top: 0;">ENERO 2026</h3>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="day-name">Dom</div><div class="day-name">Lun</div><div class="day-name">Mar</div>
+                    <div class="day-name">Mié</div><div class="day-name">Jue</div><div class="day-name">Vie</div>
+                    <div class="day-name">Sáb</div>
+
+                    <div class="day-num empty"></div><div class="day-num empty"></div><div class="day-num empty"></div>
+                    <div class="day-num empty"></div><div class="day-num">1</div><div class="day-num">2</div><div class="day-num">3</div>
+                    
+                    <div class="day-num">4</div><div class="day-num">5</div>
+                    <div class="day-num special" title="Día de Reyes">6 <i class="fas fa-crown"></i></div>
+                    
+                    <div class="day-num">7</div><div class="day-num">8</div><div class="day-num">9</div><div class="day-num">10</div>
+                    <div class="day-num">11</div><div class="day-num">12</div><div class="day-num">13</div><div class="day-num">14</div>
+                    <div class="day-num">15</div><div class="day-num">16</div><div class="day-num">17</div><div class="day-num">18</div>
+                    <div class="day-num">19</div><div class="day-num">20</div><div class="day-num">21</div><div class="day-num">22</div>
+                    
+                    <div class="day-num today">29</div> <div class="day-num">30</div><div class="day-num">31</div>
+                    <div class="day-num empty"></div><div class="day-num empty"></div><div class="day-num empty"></div>
+                    <div class="day-num empty"></div><div class="day-num empty"></div>
+                </div>
+            </div>
+
+            <div class="events-list-container" style="flex: 1; min-width: 300px; max-width: 500px;">
+                <h4 style="font-family:'Oswald'; border-bottom: 3px solid var(--rojo); padding-bottom: 10px; font-size: 1.4rem; color: var(--negro);">FECHAS IMPORTANTES</h4>
+                <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                    <li class="event-item">
+                        <span class="event-date">14 FEB</span>
+                        <div class="event-info">
+                            <strong>San Valentín</strong>
+                            <p>Promociones especiales para compartir en pareja o amigos.</p>
+                        </div>
+                    </li>
+                    <li class="event-item">
+                        <span class="event-date">30 ABR</span>
+                        <div class="event-info">
+                            <strong>Día del Niño</strong>
+                            <p>Sorpresas Krunch para los más pequeños del hogar.</p>
+                        </div>
+                    </li>
+                    <li class="event-item">
+                        <span class="event-date">10 MAY</span>
+                        <div class="event-info">
+                            <strong>Día de las Madres</strong>
+                            <p>Celebramos a mamá con el mejor sabor de Mary's.</p>
+                        </div>
+                    </li>
+                    <li class="event-item anniversary">
+                        <span class="event-date">JULIO</span>
+                        <div class="event-info">
+                            <strong>Aniversario Mary's</strong>
+                            <p>Nuestro mes más especial. ¡Grandes sorpresas!</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS CALENDARIO --- */
+        .calendar-wrapper {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .day-name { 
+            font-weight: 900; 
+            font-size: 0.75rem; 
+            padding-bottom: 15px; 
+            color: var(--rojo); 
+            text-transform: uppercase; 
+        }
+        
+        .day-num {
+            padding: 12px 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            background: #f8f8f8;
+            color: #444;
+            min-height: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+        }
+        .day-num:not(.empty):hover {
+            background: #eee;
+            transform: scale(1.05);
+        }
+
+        /* Día Actual */
+        .today {
+            background-color: var(--amarillo) !important;
+            color: var(--rojo);
+            font-weight: 900;
+            box-shadow: 0 4px 10px rgba(243, 180, 18, 0.4);
+        }
+
+        /* Fechas Especiales */
+        .special {
+            background-color: var(--rojo) !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        .special i { font-size: 0.6rem; margin-top: 3px; }
+
+        .empty { background: transparent; }
+
+        /* Lista de Eventos Lateral */
+        .event-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+            transition: 0.3s;
+        }
+        .event-item:hover { background: #fffcf5; }
+        
+        .event-date {
+            background: var(--rojo);
+            color: white;
+            font-family: 'Oswald';
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-right: 15px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .event-info strong { display: block; color: var(--negro); font-size: 1rem; }
+        .event-info p { margin: 3px 0 0 0; font-size: 0.85rem; color: #666; line-height: 1.3; }
+
+        .anniversary { background: #fffcf0; border-radius: 10px; border: 1px solid var(--amarillo); }
+
+        @media (max-width: 600px) {
+            .calendar-container-flex { flex-direction: column; align-items: center; }
+            .calendar-wrapper { padding: 15px; }
+            .day-num { min-height: 40px; font-size: 0.85rem; }
+        }
+    </style>
+    <section id="reseñas" class="tab-content" style="padding: 80px 5%; background-color: #fdfdfd;">
+        
+        <div class="reviews-container" style="max-width: 600px; margin: 0 auto;">
+            
+            <div class="review-header" style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-family:'Oswald'; color: var(--rojo); font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px;">Tu opinión cuenta</h2>
+                <p style="color: #555; font-size: 1.1rem;">Queremos que tu experiencia en Mary's sea perfecta. ¡Cuéntanos qué tal te pareció!</p>
+            </div>
+
+            <form id="reviewForm" class="review-form">
+                <div class="input-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" placeholder="Ej. Juan Pérez" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" placeholder="55 0000 0000" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>¿Qué sucursal visitaste?</label>
+                    <select required>
+                        <option value="" disabled selected>Selecciona una sucursal</option>
+                        <option value="buenavista">Buenavista</option>
+                        <option value="tesoro">El Tesoro</option>
+                        <option value="lopez">López Portillo</option>
+                        <option value="izcalli">Izcalli</option>
+                        <option value="tequex">Tequex</option>
+                    </select>
+                </div>
+
+                <div class="input-group" style="background: #fffcf5; padding: 15px; border-radius: 12px; border: 1px solid var(--amarillo);">
+                    <label style="text-align: center; display: block;">Tu Calificación</label>
+                    <div class="star-rating">
+                        <input type="radio" name="stars" id="star-5" value="5"><label for="star-5" class="fas fa-star"></label>
+                        <input type="radio" name="stars" id="star-4" value="4"><label for="star-4" class="fas fa-star"></label>
+                        <input type="radio" name="stars" id="star-3" value="3"><label for="star-3" class="fas fa-star"></label>
+                        <input type="radio" name="stars" id="star-2" value="2"><label for="star-2" class="fas fa-star"></label>
+                        <input type="radio" name="stars" id="star-1" value="1"><label for="star-1" class="fas fa-star"></label>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 20px;">
+                    <label>Comparte una foto de tu pedido (Opcional)</label>
+                    <div class="upload-box">
+                        <input type="file" id="reviewPhoto" accept="image/*" hidden>
+                        <label for="reviewPhoto" class="upload-label">
+                            <i class="fas fa-camera" style="margin-bottom: 10px; font-size: 1.5rem; color: var(--rojo);"></i><br>
+                            Click para subir imagen o ticket
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Cuéntanos tu experiencia</label>
+                    <textarea rows="4" placeholder="¿Cómo estuvo el sabor y el servicio?"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-review">ENVIAR RESEÑA KRUNCH</button>
+            </form>
+
+        </div>
+    </section>
+
+    <style>
+        /* --- ESTILOS UNIFICADOS RESEÑAS --- */
+        .review-form {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border-top: 6px solid var(--rojo);
+        }
+
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 0.85rem; color: var(--negro); text-transform: uppercase; }
+        
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            font-family: 'Roboto', sans-serif;
+            outline: none;
+            background: #fafafa;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { 
+            border-color: var(--amarillo); 
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(243, 180, 18, 0.1);
+        }
+
+        /* Estrellas Estilizadas */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 10px;
+        }
+        .star-rating input { display: none; }
+        .star-rating label { font-size: 2.2rem; color: #eee; cursor: pointer; transition: 0.3s; }
+        
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label { color: var(--amarillo); text-shadow: 0 0 10px rgba(243, 180, 18, 0.3); }
+
+        /* Caja de Carga de Archivos */
+        .upload-label {
+            display: block;
+            padding: 25px;
+            background: #fdfdfd;
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            color: #777;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .upload-label:hover { border-color: var(--rojo); background: #fff8f8; color: var(--rojo); }
+
+        /* Botón Enviar */
+        .btn-submit-review {
+            width: 100%;
+            padding: 18px;
+            background: var(--rojo);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-family: 'Oswald';
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(189, 22, 28, 0.2);
+        }
+
+        .btn-submit-review:hover { 
+            background: var(--negro); 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 600px) {
+            .input-row { grid-template-columns: 1fr !important; }
+            .review-form { padding: 20px; }
+            .star-rating label { font-size: 1.8rem; }
+        }
+    </style>
